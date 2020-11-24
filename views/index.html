@@ -1,66 +1,60 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
+      <title>hejhopp</title>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" type="text/css" href="/css/style.css"></link>
+      <link rel="stylesheet" href="css/deli-very.css">
+
+      <script type="text/javascript" src="js/menu.js" defer></script>
+      <script src="js/js_script.js" defer></script>
+      <script src="/socket.io/socket.io.js" defer></script>
+      <script src="https://vuejs.org/js/vue.js" defer></script>
+      <script src="js/vue_script.js" defer></script>
+      <script src="/vue/vue.js" defer></script>
+
+
+
     </head>
 
+
+
     <body>
-      <main>
-        <h1>  Woho hamburgare</h1>
-      </main>
-     <section>
+      <main id="mainID">
+        <header class="helaheader">  <h1 id="företagsnamn">  Fristedts Firma</h1>
+        <img src="https://cdn2.cdnme.se/cdn/7-2/2307598/images/2010/img_8432_119316874.jpg" id="headerfoto">
+      </header>
+
+
+
+
+
+
+
+     <section  id="allahamburgare">
        <h2>Välj hamburgare </h2>
        <p> Här kan du välja vilken hamburgare du vill ha
        </p>
+       <div id="menyHamburgare">
+      <div class="wrapper">
+       <div class="box name" v-for="burger in theburgers" >  {{ burger.name }} </div>
+       <div class="box pic" v-for="burger in theburgers" ><img :src="burger.bild" width="250"> </div>
+       <div class="box Kcal" v-for="burger in theburgers" > {{burger.kCal}} </div>
+     </div>
 
-     <table>
-
-         <thead>
-
-           <tr>
-             <th>Smaskig hamburgare</th>
-             <th>Glutenfri hamburgare</th>
-             <th>Fri Hamburgare</th>
-           </tr>
-
-         </thead>
-
-         <tbody>
-           <tr>
-              <td><img src="https://pagen.se/globalassets/kampanjer/garden-party-2018/burgare-med-vitloks--och-chilimajonas.png.png?w=734&h=462&mode=crop&resized=true"width="250" height="200"></td>
-              <td><img src="https://assets.icanet.se/q_auto,f_auto/imagevaultfiles/id_161382/cf_259/svamp-och-quinoaburgare-med-picklade-senapsfron-oc.jpg"width="250"height="200"></td>
-              <td><img src="https://www.santamariaworld.com//globalassets/_recipes/tex-mex/hamburgare_chili.jpg"width="250"height="200"></td>
-            </tr>
-
-         <tr>
-            <td>
-              <ul>
-                <li>Gluten</li>
-                <li>Bröd</li>
-                <li>Mjöl</li>
-            </ul>
-          </td>
-          <td>
-              <ul>
-                <li>Inte så gott bröd</li>
-                <li> Inte så gott mjöl</li>
-                <li> Inte så god </li>
-              </ul>
-          </td>
-            <td>
-              <ul>
-                <li> Lever utanför sociala konstruktioner</li>
-                <li> Tycker inte om regler</li>
-                <li> anarkist?</li>
-              </ul>
-            </td>
-        </tr>
-      </tbody>
-      </table>
-
+    </div>
      </section>
 
-     <section>
+
+
+
+
+     <section id="orderInfo">
       <h3>  Kontaktuppgifter</h3>
       <p>Fyll i Kontaktuppgifter plz</p>
 
@@ -89,18 +83,18 @@
                   </select>
               </p>
               <p>
-                <h5> Kön </h5>
-                  <input type="radio" id="gender" name="gender" checked="checked" >
-                  <label for="gender">Burgarn bryr sig inte</label><br>
-                  <input type="radio" id="ickebinär" name="gender" >
-                  <label for="ickebinär">ickebinär</label><br>
-                  <input type="radio" id="binär" name="gender"  >
-                  <label for="binär">binär</label><br>
+                <h5> Ska det bli gott? </h5>
+                  <input type="radio" id="ja" name="gott" checked="checked" >
+                  <label for="ja">ja</label><br>
+                  <input type="radio" id="nej" name="gott" >
+                  <label for="nej">nej</label><br>
+                  <input type="radio" id="ganska" name="gott"  >
+                  <label for="ganska">ganska</label><br>
               </p>
 
     </section>
-    <button type="Send order"><img src="https://static4.depositphotos.com/1006863/279/v/950/depositphotos_2799900-stock-illustration-funny-cartoon-hamburger.jpg" "width="25"height="20"> Send Info</button>
-
+    <button type="submit" v-on:click="sendOrder()"><img src="https://static4.depositphotos.com/1006863/279/v/950/depositphotos_2799900-stock-illustration-funny-cartoon-hamburger.jpg" width="25" height="20" > Send Info </button>
+    </main>
 <footer> FF burgers</footer>
     </body>
 </html>
